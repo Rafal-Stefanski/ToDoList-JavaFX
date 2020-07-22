@@ -1,4 +1,3 @@
-
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextArea?>
@@ -30,19 +29,19 @@
     </left>
     <center>
         <VBox style="-fx-background-color: white">
-        <TextArea fx:id="itemDetailsTextArea" VBox.vgrow="ALWAYS"/>
-        <HBox>
-            <Label text="Due: " style="-fx-background-color: white">
-                <font>
-                    <Font name="Times New Roman bold" size="20"/>
-                </font>
-            </Label>
-            <Label fx:id="deadLineLabel" style="-fx-background-color: white">
-                <font>
-                    <Font name="Times New Roman bold" size="20"/>
-                </font>
-            </Label>
-        </HBox>
+            <TextArea fx:id="itemDetailsTextArea" VBox.vgrow="ALWAYS"/>
+            <HBox>
+                <Label text="Due: " style="-fx-background-color: white">
+                    <font>
+                        <Font name="Times New Roman bold" size="20"/>
+                    </font>
+                </Label>
+                <Label fx:id="deadlineLabel" style="-fx-background-color: white">
+                    <font>
+                        <Font name="Times New Roman bold" size="20"/>
+                    </font>
+                </Label>
+            </HBox>
         </VBox>
     </center>
 </BorderPane>

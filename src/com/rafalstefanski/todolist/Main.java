@@ -12,7 +12,7 @@ import java.io.IOException;
 public class Main extends Application {
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("mainwindow.fxml"));
         primaryStage.setTitle("Todo List");
         primaryStage.setScene(new Scene(root, 900, 500));

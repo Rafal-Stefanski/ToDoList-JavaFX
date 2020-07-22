@@ -1,6 +1,7 @@
 package com.rafalstefanski.todolist.datamodel;
 
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -17,7 +18,7 @@ public class TodoData {
     private static TodoData instance = new TodoData();
     private static String filename = "TodoListItems.txt";
 
-    private List<TodoItem> todoItems;
+    private ObservableList<TodoItem> todoItems;
     private DateTimeFormatter formatter;
 
     public static TodoData getInstance() {
@@ -28,7 +29,7 @@ public class TodoData {
         formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
     }
 
-    public List<TodoItem> getTodoItems() {
+    public ObservableList<TodoItem> getTodoItems() {
         return todoItems;
     }
 
@@ -37,6 +38,7 @@ public class TodoData {
     }
 
     public void loadTodoItems() throws IOException {
+
         todoItems = FXCollections.observableArrayList();
         Path path = Paths.get(filename);
         BufferedReader br = Files.newBufferedReader(path);
@@ -49,26 +51,27 @@ public class TodoData {
 
                 String shortDescription = itemPieces[0];
                 String details = itemPieces[1];
-                String dataString = itemPieces[2];
+                String dateString = itemPieces[2];
 
-                LocalDate date = LocalDate.parse(dataString, formatter);
+                LocalDate date = LocalDate.parse(dateString, formatter);
                 TodoItem todoItem = new TodoItem(shortDescription, details, date);
                 todoItems.add(todoItem);
-
             }
+
         } finally {
-            if (br != null) {
+            if(br != null) {
                 br.close();
             }
         }
     }
 
     public void storeTodoItems() throws IOException {
+
         Path path = Paths.get(filename);
         BufferedWriter bw = Files.newBufferedWriter(path);
         try {
             Iterator<TodoItem> iter = todoItems.iterator();
-            while (iter.hasNext()) {
+            while(iter.hasNext()) {
                 TodoItem item = iter.next();
                 bw.write(String.format("%s\t%s\t%s",
                         item.getShortDescription(),
@@ -78,9 +81,10 @@ public class TodoData {
             }
 
         } finally {
-            if (bw != null) {
+            if(bw != null) {
                 bw.close();
             }
         }
     }
+
 }
